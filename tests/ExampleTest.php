@@ -13,7 +13,15 @@ class ExampleTest extends TestCase
      */
     public function testBasicExample()
     {
-        $this->visit('/')
-             ->see('Laravel 5');
+        $pokedex = json_decode(file_get_contents(resource_path('/lang/en/pokedex.json')), true);
+        // regex = :(-?\d+(\.\d+)?),
+
+        $new_list = [];
+        foreach ($pokedex['pokemon'] as $key => $value) {
+          $new_list[$value['id']] = $value;
+          break;
+        }
+
+        var_dump($new_list) ;
     }
 }

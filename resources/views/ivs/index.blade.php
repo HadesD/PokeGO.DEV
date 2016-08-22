@@ -1,5 +1,6 @@
 @extends('layouts.indexMaster')
 @section('indexMaster.body')
+  <link rel="stylesheet" href="{{ Asset('css/ivs.css') }}" media="screen" title="no title" charset="utf-8">
   <link rel="stylesheet" href="{{ Asset('css/types.css') }}" media="screen" title="no title" charset="utf-8">
   <div id="pokemon-list" class="">
     <a class="dropdown-button btn" href="#" data-activates="sort_pokemon"><i class="material-icons left">sort</i>Sort</a>
@@ -14,14 +15,16 @@
       @foreach($pokemonData as $key => $value)
         <?php
           $per = round(($value->getIndividualAttack()+$value->getIndividualDefense()+$value->getIndividualStamina())/45*100, 2);
-          $trans_pokemon_id = $value->getPokemonId() - 1;
+          $now = time() * 1000;
+          $createdTime = $value->getCreationTimeMs();
+          $diff = round(($now - $createdTime)/1000);
         ?>
         <div class="col s12 m6 l3">
           <div class="card" style="height: 521px;">
-            <div class="card-image">
+            <div class="card-image {{ ($diff<3600*24) ? 'most_catched' : $diff }}">
               <h6 class="left" style="padding-left: 7px;position: absolute;left: 0;z-index: 1;">
                 <div class="pokemonId">
-                  #@lang('pokemon.' . $trans_pokemon_id . '.num')
+                  #@lang('pokedex.' . $value->getPokemonId() . '.num')
                 </div>
                 <div class="pokemonHeightM">
                   {{ round($value->getHeightM(), 3) }}m
@@ -31,7 +34,7 @@
                 </div>
                 <div class="pokemonWeightKg">
                 <?php
-                  $types = explode('/', trans('pokemon.' . $trans_pokemon_id . '.type'));
+                  $types = explode('/', trans('pokedex.' . $value->getPokemonId() . '.type'));
                 ?>
                 @foreach($types as $k => $v)
                   <span class="type {{ strtolower(trim($v)) }}">{{ $v }}</span>
@@ -42,12 +45,17 @@
               <h5 class="pokemonIvsperfect right {{ $per>=80 ? 'green accent-4' : 'yellow darken-2' }} white-text" style="padding:5px;position: absolute;right: 0;z-index: 1;">{{ $per }}%</h5>
               <div class="card-content">
                 <img class="responsive-img" src="{{ Asset('images/pokemon/' . $value->getPokemonId() . '.png') }}" style="height:120px;width:auto;margin:0 auto;">
-
                 <div class="right" style="position: absolute;right: 10px;bottom: 28px;">
                   <img class="responsive-img" src="{{ Asset('images/items/Item_000' . $value->getPokeball() . '.png') }}" style="height:35px;width:auto;margin:0 auto;">
                 </div>
               </div>
-              <h5 class="card-title black-text">@lang('pokemon.' . $trans_pokemon_id . '.name')</h5>
+              <h5 class="card-title black-text">
+                @if($value->getNickname())
+                  {{ $value->getNickname() }}
+                @else
+                  @lang('pokedex.' . $value->getPokemonId() . '.name')
+                @endif
+              </h5>
               <h5 class="black-text center-align" style="margin-top:5px;"><small class="grey-text">CP</small><span class="pokemonCp">{{ $value->getCp() }}</span></h5>
             </div>
             <ul class="collapsible z-depth-0" data-collapsible="accordion">
@@ -84,11 +92,19 @@
                       {{-- <div class="progress" style="margin-bottom:5px;">
                       <div class="determinate red" style="width: {{ $value->getIndividualAttack()/15*100 }}%"></div>
                     </div> --}}
-                    <div class="small red-text">{{ ucwords(str_replace('_', ' ', trans('move.' . $value->getMove1() . '.VfxName'))) }}<span class="new badge red" data-badge-caption="">{{ ucwords(str_replace('_', ' ', trans('move.' . $value->getMove1() . '.Power'))) }}</span></div>
+                    <div class="small red-text">{{ trim(ucwords(preg_replace('/\_|\"/', ' ', trans('moves.' . $value->getMove1() . '.VfxName')))) }}
+                      <span class="new badge red" data-badge-caption="">
+                        @if(is_numeric(trans('moves.' . $value->getMove1() . '.Power')))
+                          {{ trans('moves.' . $value->getMove1() . '.Power') }}
+                        @else
+                          0
+                        @endif
+                      </span>
+                    </div>
                   </div>
                   <div class="collection-item">
                     <?php
-                      $moveEnergy = trans('move.' . $value->getMove2() . '.EnergyDelta') * -1;
+                      $moveEnergy = trans('moves.' . $value->getMove2() . '.EnergyDelta') * -1;
                     ?>
                     <div class="row" style="margin-bottom:0;">
                       @for($i=0; $i < round(100/$moveEnergy); $i++)
@@ -99,7 +115,15 @@
                         </div>
                       @endfor
                     </div>
-                  <div class="small blue-text">{{ ucwords(str_replace('_', ' ', trans('move.' . $value->getMove2() . '.VfxName'))) }}<span class="new badge blue" data-badge-caption="">{{ ucwords(str_replace('_', ' ', trans('move.' . $value->getMove2() . '.Power'))) }}</span></div>
+                  <div class="small blue-text">{{ trim(ucwords(preg_replace('/\_|\"/', ' ', trans('moves.' . $value->getMove2() . '.VfxName')))) }}
+                    <span class="new badge blue" data-badge-caption="">
+                      @if(is_numeric(trans('moves.' . $value->getMove2() . '.Power')))
+                        {{ trans('moves.' . $value->getMove2() . '.Power') }}
+                      @else
+                        0
+                      @endif
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
