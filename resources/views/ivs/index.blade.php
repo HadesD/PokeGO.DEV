@@ -1,5 +1,6 @@
 @extends('layouts.indexMaster')
 @section('indexMaster.body')
+  <link rel="stylesheet" href="{{ Asset('css/types.css') }}" media="screen" title="no title" charset="utf-8">
   <div id="pokemon-list" class="">
     <a class="dropdown-button btn" href="#" data-activates="sort_pokemon"><i class="material-icons left">sort</i>Sort</a>
     <ul id="sort_pokemon" class="dropdown-content">
@@ -11,19 +12,31 @@
     </ul>
     <div class="row list">
       @foreach($pokemonData as $key => $value)
-        <?php $per = round(($value->getIndividualAttack()+$value->getIndividualDefense()+$value->getIndividualStamina())/45*100, 2); ?>
+        <?php
+          $per = round(($value->getIndividualAttack()+$value->getIndividualDefense()+$value->getIndividualStamina())/45*100, 2);
+          $trans_pokemon_id = $value->getPokemonId() - 1;
+        ?>
         <div class="col s6 m4 l3">
           <div class="card" style="height: 521px;">
             <div class="card-image">
               <h6 class="left" style="padding-left: 7px;position: absolute;left: 0;z-index: 1;">
                 <div class="pokemonId">
-                  #{{ $value->getPokemonId() }}
+                  #@lang('pokemon.' . $trans_pokemon_id . '.num')
                 </div>
                 <div class="pokemonHeightM">
                   {{ round($value->getHeightM(), 3) }}m
                 </div>
                 <div class="pokemonWeightKg">
                   {{ round($value->getWeightKg(), 3) }}kg
+                </div>
+                <div class="pokemonWeightKg">
+                <?php
+                  $types = explode('/', trans('pokemon.' . $trans_pokemon_id . '.type'));
+                ?>
+                @foreach($types as $k => $v)
+                  <span class="type {{ strtolower(trim($v)) }}">{{ $v }}</span>
+                  <br />
+                @endforeach
                 </div>
               </h6>
               <h5 class="pokemonIvsperfect right {{ $per>=80 ? 'green accent-4' : 'yellow darken-2' }} white-text" style="padding:5px;position: absolute;right: 0;z-index: 1;">{{ $per }}%</h5>
@@ -34,7 +47,7 @@
                   <img class="responsive-img" src="{{ Asset('images/items/Item_000' . $value->getPokeball() . '.png') }}" style="height:35px;width:auto;margin:0 auto;">
                 </div>
               </div>
-              <h5 class="card-title black-text">@lang('pokemon.' . $value->getPokemonId())</h5>
+              <h5 class="card-title black-text">@lang('pokemon.' . $trans_pokemon_id . '.name')</h5>
               <h5 class="black-text center-align" style="margin-top:5px;"><small class="grey-text">CP</small><span class="pokemonCp">{{ $value->getCp() }}</span></h5>
             </div>
             <ul class="collapsible z-depth-0" data-collapsible="accordion">
