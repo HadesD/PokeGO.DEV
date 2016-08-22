@@ -2,6 +2,10 @@
 
 Pokemon GO check user info and Pokemon IVs use PHP
 
+- New pokedex Database
+- Check pokemon 's move
+- more...
+
 ## Requirements
 
 - PHP >5.6
@@ -23,7 +27,14 @@ http://localhost/PokeGO.DEV/
 
 # Screenshots
 
-![alt tag](http://i.imgur.com/FTlDNell.png)
+![alt tag](http://i.imgur.com/ta37Qic.png)
+
+![alt tag](http://i.imgur.com/xNtFPoR.png)
+
+## To-Do
+
+- Check evolution
+- ...
 
 ## Credits
 - [Dark.Hades](https://github.com/HadesD) => This respository owner
