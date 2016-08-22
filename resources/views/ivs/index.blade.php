@@ -3,8 +3,9 @@
   <div id="pokemon-list" class="">
     <a class="dropdown-button btn" href="#" data-activates="sort_pokemon"><i class="material-icons left">sort</i>Sort</a>
     <ul id="sort_pokemon" class="dropdown-content">
-      <li><a href="#!" class="sort" data-sort="pokemonId"><i class="material-icons left">format_list_numbered</i> ID</a></li>
+      <li><a href="#!" class="sort" data-sort="pokemonCp"><i class="material-icons left">format_list_numbered</i> CP</a></li>
       <li><a href="#!" class="sort" data-sort="pokemonIvsperfect"><i class="material-icons left">verified_user</i> IVs</a></li>
+      <li><a href="#!" class="sort" data-sort="pokemonId"><i class="material-icons left">format_list_numbered</i> ID</a></li>
       <li><a href="#!" class="sort" data-sort="pokemonHeightM">Height</a></li>
       <li><a href="#!" class="sort" data-sort="pokemonWeightKg">Weight</a></li>
     </ul>
@@ -12,7 +13,7 @@
       @foreach($pokemonData as $key => $value)
         <?php $per = round(($value->getIndividualAttack()+$value->getIndividualDefense()+$value->getIndividualStamina())/45*100, 2); ?>
         <div class="col s6 m4 l3">
-          <div class="card" style="height: 485px;">
+          <div class="card" style="height: 521px;">
             <div class="card-image">
               <h6 class="left" style="padding-left: 7px;position: absolute;left: 0;z-index: 1;">
                 <div class="pokemonId">
@@ -28,11 +29,13 @@
               <h5 class="pokemonIvsperfect right {{ $per>=80 ? 'green accent-4' : 'yellow darken-2' }} white-text" style="padding:5px;position: absolute;right: 0;z-index: 1;">{{ $per }}%</h5>
               <div class="card-content">
                 <img class="responsive-img" src="{{ Asset('images/pokemon/' . $value->getPokemonId() . '.png') }}" style="height:120px;width:auto;margin:0 auto;">
-                <div class="right" style="margin-top: -25px;">
+
+                <div class="right" style="position: absolute;right: 10px;bottom: 28px;">
                   <img class="responsive-img" src="{{ Asset('images/items/Item_000' . $value->getPokeball() . '.png') }}" style="height:35px;width:auto;margin:0 auto;">
                 </div>
               </div>
-              <span class="card-title black-text">@lang('pokemon.' . $value->getPokemonId())</span>
+              <h5 class="card-title black-text">@lang('pokemon.' . $value->getPokemonId())</h5>
+              <h5 class="black-text center-align" style="margin-top:5px;"><small class="grey-text">CP</small><span class="pokemonCp">{{ $value->getCp() }}</span></h5>
             </div>
             <ul class="collapsible z-depth-0" data-collapsible="accordion">
               <li>
@@ -104,7 +107,7 @@
 <script type="text/javascript" src="{{ Asset('js/list.min.js') }}"></script>
 <script type="text/javascript">
 var options = {
-  valueNames: [ 'pokemonIvsperfect', 'pokemonHeightM', 'pokemonWeightKg', 'pokemonId' ]
+  valueNames: [ 'pokemonIvsperfect', 'pokemonHeightM', 'pokemonWeightKg', 'pokemonId', 'pokemonCp' ]
 };
 
 var pokemonList = new List('pokemon-list', options);
