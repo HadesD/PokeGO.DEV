@@ -16,7 +16,7 @@
           $per = round(($value->getIndividualAttack()+$value->getIndividualDefense()+$value->getIndividualStamina())/45*100, 2);
           $trans_pokemon_id = $value->getPokemonId() - 1;
         ?>
-        <div class="col s6 m4 l3">
+        <div class="col s12 m6 l3">
           <div class="card" style="height: 521px;">
             <div class="card-image">
               <h6 class="left" style="padding-left: 7px;position: absolute;left: 0;z-index: 1;">

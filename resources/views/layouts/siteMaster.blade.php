@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ Asset('fonts/material-icons.css') }}" media="screen" charset="utf-8" />
     <link rel="Shortcut Icon" href="{{ Asset('fav.ico') }}" type="image/x-icon" />
     <link rel="stylesheet" href="{{ Asset('css/materialize.min.css') }}" media="screen" charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
     @yield('body')
