@@ -20,7 +20,7 @@
           $diff = round(($now - $createdTime)/1000);
         ?>
         <div class="col s12 m6 l3">
-          <div class="card" style="height: 521px;">
+          <div class="card" style="height: 481px;">
             <div class="card-image {{ ($diff<3600*24) ? 'most_catched' : $diff }}">
               <h6 class="left" style="padding-left: 7px;position: absolute;left: 0;z-index: 1;">
                 <div class="pokemonId">
@@ -43,8 +43,8 @@
                 </div>
               </h6>
               <h5 class="pokemonIvsperfect right {{ $per>=80 ? 'green accent-4' : 'yellow darken-2' }} white-text" style="padding:5px;position: absolute;right: 0;z-index: 1;">{{ $per }}%</h5>
-              <div class="card-content">
-                <img class="responsive-img" src="{{ Asset('images/pokemon/' . $value->getPokemonId() . '.png') }}" style="height:120px;width:auto;margin:0 auto;">
+              <div class="card-content" style="height:120px;">
+                <img class="responsive-img" src="{{ Asset('images/pokemon/' . $value->getPokemonId() . '.png') }}" style="max-height:120px;width: auto;margin: 0 auto;">
                 <div class="right" style="position: absolute;right: 10px;bottom: 28px;">
                   <img class="responsive-img" src="{{ Asset('images/items/Item_000' . $value->getPokeball() . '.png') }}" style="height:35px;width:auto;margin:0 auto;">
                 </div>
