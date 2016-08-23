@@ -44,9 +44,20 @@
               </h6>
               <h5 class="pokemonIvsperfect right {{ $per>=80 ? 'green accent-4' : 'yellow darken-2' }} white-text" style="padding:5px;position: absolute;right: 0;z-index: 1;">{{ $per }}%</h5>
               <div class="card-content" style="height:120px;">
-                <img class="responsive-img" src="{{ Asset('images/pokemon/' . $value->getPokemonId() . '.png') }}" style="max-height:120px;width: auto;margin: 0 auto;">
-                <div class="right" style="position: absolute;right: 10px;bottom: 28px;">
-                  <img class="responsive-img" src="{{ Asset('images/items/Item_000' . $value->getPokeball() . '.png') }}" style="height:35px;width:auto;margin:0 auto;">
+                <img class="responsive-img" src="{{ Asset('images/pokemon/' . $value->getPokemonId() . '.png') }}" style="max-height:120px;width: auto;margin: 0 auto;" />
+                <div class="right" style="position: absolute;right: 10px;bottom: 0px;text-align:center;">
+                  @if($value->getFromFort())
+                    <img class="responsive-img" src="{{ Asset('images/items/Egg.png') }}" style="height:45px;width:auto;margin:0 auto;" />
+                    <?php
+                      if (is_numeric(trans('pokedex.' . $value->getPokemonId() . '.prev_evolution.0.num'))) {
+                        $first_evol = intval($first_evol);
+                      } else {
+                        $first_evol = trans('pokedex.' . $value->getPokemonId() . '.id');
+                      }
+                    ?>
+                    <span style="margin-top:-2px;">@lang('pokedex.' . $first_evol . '.egg')</span>
+                  @endif
+                  <img class="responsive-img" src="{{ Asset('images/items/Item_000' . $value->getPokeball() . '.png') }}" style="height:35px;width:auto;margin:0 auto;" />
                 </div>
               </div>
               <h5 class="card-title black-text">
@@ -56,7 +67,14 @@
                   @lang('pokedex.' . $value->getPokemonId() . '.name')
                 @endif
               </h5>
-              <h5 class="black-text center-align" style="margin-top:5px;"><small class="grey-text">CP</small><span class="pokemonCp">{{ $value->getCp() }}</span></h5>
+              <h5 class="black-text center-align" style="margin-top:5px;">
+                @if($value->getFavorite())
+                  <div class="left">
+                    <img class="responsive-img" src="{{ Asset('images/etc/star.png') }}" style="height:30px;width:auto;margin-left:5px;" />
+                  </div>
+                @endif
+                <small class="grey-text">CP</small><span class="pokemonCp">{{ $value->getCp() }}</span>
+              </h5>
             </div>
             <ul class="collapsible z-depth-0" data-collapsible="accordion">
               <li>
