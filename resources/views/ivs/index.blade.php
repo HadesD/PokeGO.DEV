@@ -67,7 +67,7 @@
                   @lang('pokedex.' . $value->getPokemonId() . '.name')
                 @endif
               </h5>
-              <h5 class="black-text center-align" style="margin-top:5px;">
+              <h5 class="black-text center-align" style="margin-top:5px;position:relative;">
                 @if($value->getFavorite())
                   <div class="left">
                     <img class="responsive-img" src="{{ Asset('images/etc/star.png') }}" style="height:30px;width:auto;margin-left:5px;" />
@@ -119,6 +119,7 @@
                         @endif
                       </span>
                     </div>
+                    <span class="type {{ strtolower(trans('moves.' . $value->getMove1() . '.Type')) }}">{{ ucfirst(strtolower(trans('moves.' . $value->getMove1() . '.Type'))) }}</span>
                   </div>
                   <div class="collection-item">
                     <?php
@@ -142,6 +143,7 @@
                       @endif
                     </span>
                   </div>
+                  <span class="type {{ strtolower(trans('moves.' . $value->getMove2() . '.Type')) }}">{{ ucfirst(strtolower(trans('moves.' . $value->getMove2() . '.Type'))) }}</span>
                 </div>
               </div>
             </div>
@@ -162,7 +164,7 @@
 <script type="text/javascript" src="{{ Asset('js/list.min.js') }}"></script>
 <script type="text/javascript">
 var options = {
-  valueNames: [ 'pokemonIvsperfect', 'pokemonHeightM', 'pokemonWeightKg', 'pokemonId', 'pokemonCp' ]
+  valueNames: [ 'pokemonCp', 'pokemonIvsperfect', 'pokemonHeightM', 'pokemonWeightKg', 'pokemonId' ]
 };
 
 var pokemonList = new List('pokemon-list', options);
