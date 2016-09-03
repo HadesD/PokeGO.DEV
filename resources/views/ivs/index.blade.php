@@ -24,7 +24,7 @@
             <div class="card-image {{ ($diff<3600*24) ? 'most_catched' : $diff }}">
               <h6 class="left" style="padding-left: 7px;position: absolute;left: 0;z-index: 1;">
                 <div class="pokemonId">
-                  #@lang('pokedex.' . $value->getPokemonId() . '.num')
+                  #@lang('pokedex.' . $value->getPokemonId() . '.Number')
                 </div>
                 <div class="pokemonHeightM">
                   {{ round($value->getHeightM(), 3) }}m
@@ -34,7 +34,7 @@
                 </div>
                 <div class="pokemonWeightKg">
                 <?php
-                  $types = explode('/', trans('pokedex.' . $value->getPokemonId() . '.type'));
+                  $types = trans('pokedex.' . $value->getPokemonId() . '.Types');
                 ?>
                 @foreach($types as $k => $v)
                   <span class="type {{ strtolower(trim($v)) }}">{{ $v }}</span>
@@ -55,7 +55,7 @@
                         $first_evol = trans('pokedex.' . $value->getPokemonId() . '.id');
                       }
                     ?>
-                    <span style="margin-top:-2px;">@lang('pokedex.' . $first_evol . '.egg')</span>
+                    {{-- <span style="margin-top:-2px;">@lang('pokedex.' . $first_evol . '.egg')</span> --}}
                   @endif
                   <img class="responsive-img" src="{{ Asset('images/items/Item_000' . $value->getPokeball() . '.png') }}" style="height:35px;width:auto;margin:0 auto;" />
                 </div>
@@ -64,16 +64,16 @@
                 @if($value->getNickname())
                   {{ $value->getNickname() }}
                 @else
-                  @lang('pokedex.' . $value->getPokemonId() . '.name')
+                  @lang('pokedex.' . $value->getPokemonId() . '.Name')
                 @endif
               </h5>
               <h5 class="black-text center-align" style="margin-top:5px;position:relative;">
                 @if($value->getFavorite())
-                  <div class="left">
+                  <div class="left" style="position: absolute;">
                     <img class="responsive-img" src="{{ Asset('images/etc/star.png') }}" style="height:30px;width:auto;margin-left:5px;" />
                   </div>
                 @endif
-                <small class="grey-text">CP</small><span class="pokemonCp">{{ $value->getCp() }}</span>
+                <small class="grey-text">CP</small><span class="pokemonCp">{{ $value->getCp() }}</span>/@lang('pokedex.' . $value->getPokemonId() . '.MaxCP')
               </h5>
             </div>
             <ul class="collapsible z-depth-0" data-collapsible="accordion">

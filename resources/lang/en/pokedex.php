@@ -3,7 +3,7 @@
 // regex = : (-?\d+(\.\d+)?),
 
 $new_list = [];
-foreach ($pokedex['pokemon'] as $key => $value) {
-  $new_list[$value['id']] = $value;
+foreach ($pokedex as $key => $value) {
+  $new_list[intval($value["Number"])] = $value;
 }
 return $new_list;
