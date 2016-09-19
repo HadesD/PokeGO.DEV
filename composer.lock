@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6ed130ac456d4c8c643cf9e8ed81999d",
+    "hash": "c5678dcd2b26a5bc6d7cfcb27d5f0c4b",
     "content-hash": "df6d73cdd306f358cea8924aea44da5d",
     "packages": [
         {
@@ -558,16 +558,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.2.43",
+            "version": "v5.2.45",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "5490b8f00564bb60839002f86828e27edd1e5610"
+                "reference": "2a79f920d5584ec6df7cf996d922a742d11095d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/5490b8f00564bb60839002f86828e27edd1e5610",
-                "reference": "5490b8f00564bb60839002f86828e27edd1e5610",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/2a79f920d5584ec6df7cf996d922a742d11095d1",
+                "reference": "2a79f920d5584ec6df7cf996d922a742d11095d1",
                 "shasum": ""
             },
             "require": {
@@ -648,7 +648,7 @@
                 "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (~2.0).",
                 "symfony/css-selector": "Required to use some of the crawler integration testing tools (2.8.*|3.0.*).",
                 "symfony/dom-crawler": "Required to use most of the crawler integration testing tools (2.8.*|3.0.*).",
-                "symfony/psr-http-message-bridge": "Required to psr7 bridging features (0.2.*)."
+                "symfony/psr-http-message-bridge": "Required to use psr7 bridging features (0.2.*)."
             },
             "type": "library",
             "extra": {
@@ -684,7 +684,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-08-10 12:23:59"
+            "time": "2016-08-26 11:44:52"
         },
         {
             "name": "league/flysystem",
@@ -944,26 +944,28 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/NicklasWallgren/PokemonGoAPI-PHP.git",
-                "reference": "7d3e43b89276fbc16db3d17cb813e00a3eaa549b"
+                "reference": "1ff4625dfbf1015d4079437ef38d20b64d27dc8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NicklasWallgren/PokemonGoAPI-PHP/zipball/7d3e43b89276fbc16db3d17cb813e00a3eaa549b",
-                "reference": "7d3e43b89276fbc16db3d17cb813e00a3eaa549b",
+                "url": "https://api.github.com/repos/NicklasWallgren/PokemonGoAPI-PHP/zipball/1ff4625dfbf1015d4079437ef38d20b64d27dc8a",
+                "reference": "1ff4625dfbf1015d4079437ef38d20b64d27dc8a",
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/guzzle": "~6.0",
-                "illuminate/config": "^5.2",
+                "guzzlehttp/guzzle": "^6.2.1",
+                "illuminate/support": "^5.2",
                 "jeremeamia/xstatic": "^1.0",
-                "monolog/monolog": "^1.20",
                 "nicklasw/pogoprotos-php": "dev-master",
                 "nicklasw/s2-geometry-library-php": "dev-master",
                 "paquettg/php-html-parser": "1.7",
                 "php": ">=5.6",
                 "php-di/php-di": "^5.3",
                 "phpseclib/phpseclib": "^2.0",
-                "vlucas/phpdotenv": "^2.3"
+                "psr/log": "^1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0||~5.0"
             },
             "type": "project",
             "autoload": {
@@ -982,7 +984,7 @@
             "keywords": [
                 "Pokemon Go API"
             ],
-            "time": "2016-08-16 17:45:28"
+            "time": "2016-09-15 16:34:20"
         },
         {
             "name": "nicklasw/pogoprotos-php",
@@ -990,12 +992,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/NicklasWallgren/pogoprotos-php.git",
-                "reference": "74b47c4eda3c9d8b62f6f2c4038173ea78f7a6e2"
+                "reference": "5021f9df52557e42bb9fbd25bd348d9b943d56ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NicklasWallgren/pogoprotos-php/zipball/74b47c4eda3c9d8b62f6f2c4038173ea78f7a6e2",
-                "reference": "74b47c4eda3c9d8b62f6f2c4038173ea78f7a6e2",
+                "url": "https://api.github.com/repos/NicklasWallgren/pogoprotos-php/zipball/5021f9df52557e42bb9fbd25bd348d9b943d56ae",
+                "reference": "5021f9df52557e42bb9fbd25bd348d9b943d56ae",
                 "shasum": ""
             },
             "require": {
@@ -1009,7 +1011,9 @@
                 "files": [
                     "src/protocolbuffers.inc.php",
                     "src/POGOProtos/Networking/Envelopes/RequestEnvelope.php",
-                    "src/POGOProtos/Networking/Envelopes/ResponseEnvelope.php"
+                    "src/POGOProtos/Networking/Envelopes/ResponseEnvelope.php",
+                    "src/POGOProtos/Networking/Responses/EvolvePokemonResponse.php",
+                    "src/POGOProtos/Networking/Responses/UpgradePokemonResponse.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1019,7 +1023,7 @@
                     "email": "nicklas.wallgren@gmail.com"
                 }
             ],
-            "time": "2016-08-12 12:58:19"
+            "time": "2016-08-21 07:06:09"
         },
         {
             "name": "nicklasw/s2-geometry-library-php",
@@ -1027,12 +1031,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/NicklasWallgren/s2-geometry-library-php.git",
-                "reference": "7b70a341ba75290d526335f9874307df2306a540"
+                "reference": "a657efe66018b1ed1b7b67899712b0ae6de1f600"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NicklasWallgren/s2-geometry-library-php/zipball/7b70a341ba75290d526335f9874307df2306a540",
-                "reference": "7b70a341ba75290d526335f9874307df2306a540",
+                "url": "https://api.github.com/repos/NicklasWallgren/s2-geometry-library-php/zipball/a657efe66018b1ed1b7b67899712b0ae6de1f600",
+                "reference": "a657efe66018b1ed1b7b67899712b0ae6de1f600",
                 "shasum": ""
             },
             "require-dev": {
@@ -1046,20 +1050,20 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Fork - Port of s2-geometry-library-java into PHP",
-            "time": "2016-08-02 15:06:32"
+            "time": "2016-08-31 10:17:06"
         },
         {
             "name": "nikic/php-parser",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "47b254ea51f1d6d5dc04b9b299e88346bf2369e3"
+                "reference": "4dd659edadffdc2143e4753df655d866dbfeedf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/47b254ea51f1d6d5dc04b9b299e88346bf2369e3",
-                "reference": "47b254ea51f1d6d5dc04b9b299e88346bf2369e3",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/4dd659edadffdc2143e4753df655d866dbfeedf0",
+                "reference": "4dd659edadffdc2143e4753df655d866dbfeedf0",
                 "shasum": ""
             },
             "require": {
@@ -1097,7 +1101,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2016-04-19 13:41:41"
+            "time": "2016-09-16 12:04:44"
         },
         {
             "name": "paquettg/php-html-parser",
@@ -1287,22 +1291,22 @@
         },
         {
             "name": "php-di/php-di",
-            "version": "5.3.0",
+            "version": "5.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-DI/PHP-DI.git",
-                "reference": "854a6d8f54e2146f0a34f0a28f0adea688b634a3"
+                "reference": "e348393488fa909e4bc0707ba5c9c44cd602a1cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-DI/PHP-DI/zipball/854a6d8f54e2146f0a34f0a28f0adea688b634a3",
-                "reference": "854a6d8f54e2146f0a34f0a28f0adea688b634a3",
+                "url": "https://api.github.com/repos/PHP-DI/PHP-DI/zipball/e348393488fa909e4bc0707ba5c9c44cd602a1cb",
+                "reference": "e348393488fa909e4bc0707ba5c9c44cd602a1cb",
                 "shasum": ""
             },
             "require": {
                 "container-interop/container-interop": "~1.0",
                 "php": ">=5.5.0",
-                "php-di/invoker": "^1.1.1",
+                "php-di/invoker": "^1.3.2",
                 "php-di/phpdoc-reader": "^2.0.1"
             },
             "provide": {
@@ -1343,7 +1347,7 @@
                 "dependency injection",
                 "di"
             ],
-            "time": "2016-06-01 17:23:41"
+            "time": "2016-08-23 20:18:00"
         },
         {
             "name": "php-di/phpdoc-reader",
@@ -1384,16 +1388,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.2",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "3d265f7c079f5b37d33475f996d7a383c5fc8aeb"
+                "reference": "41f85e9c2582b3f6d1b7d20395fb40c687ad5370"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/3d265f7c079f5b37d33475f996d7a383c5fc8aeb",
-                "reference": "3d265f7c079f5b37d33475f996d7a383c5fc8aeb",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/41f85e9c2582b3f6d1b7d20395fb40c687ad5370",
+                "reference": "41f85e9c2582b3f6d1b7d20395fb40c687ad5370",
                 "shasum": ""
             },
             "require": {
@@ -1472,7 +1476,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2016-05-13 01:15:21"
+            "time": "2016-08-18 18:49:14"
         },
         {
             "name": "psr/http-message",
@@ -1806,7 +1810,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.1.3",
+            "version": "v3.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -2468,16 +2472,16 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v2.3.0",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "9ca5644c536654e9509b9d257f53c58630eb2a6a"
+                "reference": "3cc116adbe4b11be5ec557bf1d24dc5e3a21d18c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/9ca5644c536654e9509b9d257f53c58630eb2a6a",
-                "reference": "9ca5644c536654e9509b9d257f53c58630eb2a6a",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/3cc116adbe4b11be5ec557bf1d24dc5e3a21d18c",
+                "reference": "3cc116adbe4b11be5ec557bf1d24dc5e3a21d18c",
                 "shasum": ""
             },
             "require": {
@@ -2489,7 +2493,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -2514,7 +2518,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2016-06-14 14:14:52"
+            "time": "2016-09-01 10:05:43"
         }
     ],
     "packages-dev": [
@@ -3427,23 +3431,23 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "1.3.7",
+            "version": "1.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "4e8f0da10ac5802913afc151413bc8c53b6c2716"
+                "reference": "be2c607e43ce4c89ecd60e75c6a85c126e754aea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/4e8f0da10ac5802913afc151413bc8c53b6c2716",
-                "reference": "4e8f0da10ac5802913afc151413bc8c53b6c2716",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/be2c607e43ce4c89ecd60e75c6a85c126e754aea",
+                "reference": "be2c607e43ce4c89ecd60e75c6a85c126e754aea",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": "^5.3.3 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.4"
+                "phpunit/phpunit": "^4.8 || ^5.0"
             },
             "type": "library",
             "extra": {
@@ -3473,7 +3477,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2016-05-17 03:18:57"
+            "time": "2016-08-18 05:49:44"
         },
         {
             "name": "sebastian/exporter",
@@ -3792,16 +3796,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.1.3",
+            "version": "v3.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "1819adf2066880c7967df7180f4f662b6f0567ac"
+                "reference": "f291ed25eb1435bddbe8a96caaef16469c2a092d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/1819adf2066880c7967df7180f4f662b6f0567ac",
-                "reference": "1819adf2066880c7967df7180f4f662b6f0567ac",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/f291ed25eb1435bddbe8a96caaef16469c2a092d",
+                "reference": "f291ed25eb1435bddbe8a96caaef16469c2a092d",
                 "shasum": ""
             },
             "require": {
@@ -3837,7 +3841,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-07-17 14:02:08"
+            "time": "2016-09-02 02:12:52"
         },
         {
             "name": "webmozart/assert",
