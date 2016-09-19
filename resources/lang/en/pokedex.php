@@ -1,9 +1,25 @@
-<?php $pokedex = json_decode(file_get_contents(resource_path('/lang/en/pokedex.json')), true);
+<?php
+$pokedex = json_decode(file_get_contents(resource_path('/lang/en/pokedex.json')), true);
 
 // regex = : (-?\d+(\.\d+)?),
 
 $new_list = [];
 foreach ($pokedex as $key => $value) {
-  $new_list[intval($value["Number"])] = $value;
+    $value['fast_move'] = $value['Fast Attack(s)'];
+    $value['charge_move'] = $value['Special Attack(s)'];
+    unset($value['Fast Attack(s)'], $value['Special Attack(s)']);
+    foreach ($value['fast_move'] as $fmK => $fmV) {
+        if (isset($fmV['Name'])) {
+            $value['fast_move'][$fmK]['Name'] = strtoupper($fmV['Name']);
+            $value['fast_move'][$fmK]['Name'] = str_replace(' ', '_', $value['fast_move'][$fmK]['Name']);
+        }
+    }
+    foreach ($value['charge_move'] as $cmK => $cmV) {
+        if (isset($cmV['Name'])) {
+            $value['charge_move'][$cmK]['Name'] = strtoupper($cmV['Name']);
+            $value['charge_move'][$cmK]['Name'] = str_replace(' ', '_', $value['charge_move'][$cmK]['Name']);
+        }
+    }
+    $new_list[intval($value["Number"])] = $value;
 }
 return $new_list;

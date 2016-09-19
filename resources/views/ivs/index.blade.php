@@ -111,7 +111,8 @@
                         {{-- <div class="progress" style="margin-bottom:5px;">
                         <div class="determinate red" style="width: {{ $value->getIndividualAttack()/15*100 }}%"></div>
                       </div> --}}
-                      <div class="small red-text">{{ trim(ucwords(preg_replace('/\_|\"/', ' ', trans('moves.' . $value->getMove1() . '.VfxName')))) }}
+                      <div class="small red-text">
+                        {{ trim(ucwords(preg_replace('/\_|\"/', ' ', trans('moves.' . $value->getMove1() . '.VfxName')))) }}({{ trans('moves.' . $value->getMove1() . '.DPS') }})
                         <span class="new badge red" data-badge-caption="">
                           @if(is_numeric(trans('moves.' . $value->getMove1() . '.Power')))
                             {{ trans('moves.' . $value->getMove1() . '.Power') }}
@@ -121,10 +122,38 @@
                         </span>
                       </div>
                       <span class="type {{ strtolower(trans('moves.' . $value->getMove1() . '.Type')) }}">{{ ucfirst(strtolower(trans('moves.' . $value->getMove1() . '.Type'))) }}</span>
+
+                        <div class="card card-content">
+                          @foreach(trans('pokedex.' . $value->getPokemonId() . '.fast_move') as $fmK => $fmV)
+                            <?php
+                              $moveEnergy = intval(trans('moves.' . $fmV['Name'] . '.EnergyDelta')) * -1;
+                            ?>
+                            <div class="row" style="margin-bottom:0;">
+                              @for($i=0; $i < round(100/$moveEnergy); $i++)
+                                <div class="col s{{ round(12/round(100/$moveEnergy)) }}">
+                                  <div class="progress" style="margin-bottom:5px;">
+                                    <div class="determinate blue" style="width: 100%"></div>
+                                  </div>
+                                </div>
+                              @endfor
+                            </div>
+                            <div class="small blue-text">
+                              {{ trim(ucwords(preg_replace('/\_|\"/', ' ', trans('moves.' . $fmV['Name'] . '.VfxName')))) }}({{ trans('moves.' . $fmV['Name'] . '.DPS') }})
+                              <span class="new badge blue" data-badge-caption="">
+                                @if(is_numeric(trans('moves.' . $fmV['Name'] . '.Power')))
+                                  {{ trans('moves.' . $fmV['Name'] . '.Power') }}
+                                @else
+                                  0
+                                @endif
+                              </span>
+                            </div>
+                            <span class="type {{ strtolower(trans('moves.' . $fmV['Name'] . '.Type')) }}">{{ ucfirst(strtolower(trans('moves.' . $fmV['Name'] . '.Type'))) }}</span>
+                          @endforeach
+                        </div>
                     </div>
                     <div class="collection-item">
                       <?php
-                        $moveEnergy = trans('moves.' . $value->getMove2() . '.EnergyDelta') * -1;
+                        $moveEnergy = intval(trans('moves.' . $value->getMove2() . '.EnergyDelta')) * -1;
                       ?>
                       <div class="row" style="margin-bottom:0;">
                         @for($i=0; $i < round(100/$moveEnergy); $i++)
@@ -135,7 +164,8 @@
                           </div>
                         @endfor
                       </div>
-                    <div class="small blue-text">{{ trim(ucwords(preg_replace('/\_|\"/', ' ', trans('moves.' . $value->getMove2() . '.VfxName')))) }}
+                    <div class="small blue-text">
+                      {{ trim(ucwords(preg_replace('/\_|\"/', ' ', trans('moves.' . $value->getMove2() . '.VfxName')))) }}({{ trans('moves.' . $value->getMove2() . '.DPS') }})
                       <span class="new badge blue" data-badge-caption="">
                         @if(is_numeric(trans('moves.' . $value->getMove2() . '.Power')))
                           {{ trans('moves.' . $value->getMove2() . '.Power') }}
@@ -145,7 +175,35 @@
                       </span>
                     </div>
                     <span class="type {{ strtolower(trans('moves.' . $value->getMove2() . '.Type')) }}">{{ ucfirst(strtolower(trans('moves.' . $value->getMove2() . '.Type'))) }}</span>
-                  </div>
+
+                    <div class="card card-content">
+                      @foreach(trans('pokedex.' . $value->getPokemonId() . '.charge_move') as $cmK => $cmV)
+                        <?php
+                          $moveEnergy = intval(trans('moves.' . $cmV['Name'] . '.EnergyDelta')) * -1;
+                        ?>
+                        <div class="row" style="margin-bottom:0;">
+                          @for($i=0; $i < round(100/$moveEnergy); $i++)
+                            <div class="col s{{ round(12/round(100/$moveEnergy)) }}">
+                              <div class="progress" style="margin-bottom:5px;">
+                                <div class="determinate blue" style="width: 100%"></div>
+                              </div>
+                            </div>
+                          @endfor
+                        </div>
+                        <div class="small blue-text">
+                          {{ trim(ucwords(preg_replace('/\_|\"/', ' ', trans('moves.' . $cmV['Name'] . '.VfxName')))) }}({{ trans('moves.' . $cmV['Name'] . '.DPS') }})
+                          <span class="new badge blue" data-badge-caption="">
+                            @if(is_numeric(trans('moves.' . $cmV['Name'] . '.Power')))
+                              {{ trans('moves.' . $cmV['Name'] . '.Power') }}
+                            @else
+                              0
+                            @endif
+                          </span>
+                        </div>
+                        <span class="type {{ strtolower(trans('moves.' . $cmV['Name'] . '.Type')) }}">{{ ucfirst(strtolower(trans('moves.' . $cmV['Name'] . '.Type'))) }}</span>
+                      @endforeach
+                    </div>
+                </div>
                 </div>
               </div>
             </li>
