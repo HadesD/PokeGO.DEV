@@ -122,17 +122,21 @@
 
                       <div class="card card-content">
                         @foreach(trans('pokedex.' . $value->getPokemonId() . '.fast_move') as $fmK => $fmV)
-                          <div class="small red-text">
-                            {{ trim(ucwords(preg_replace('/\_|\"/', ' ', trans('moves.' . $fmV['Name'] . '.VfxName')))) }}({{ trans('moves.' . $fmV['Name'] . '.DPS') }})
-                            <span class="new badge red" data-badge-caption="">
-                              @if(is_numeric(trans('moves.' . $fmV['Name'] . '.Power')))
-                                {{ trans('moves.' . $fmV['Name'] . '.Power') }}
-                              @else
-                                0
-                              @endif
+                          @if(isset($fmV['Name']))
+                            <div class="small red-text">
+                              {{ trim(ucwords(preg_replace('/\_|\"/', ' ', trans('moves.' . $fmV['Name'] . '.VfxName')))) }}({{ trans('moves.' . $fmV['Name'] . '.DPS') }})
+                              <span class="new badge red" data-badge-caption="">
+                                @if(is_numeric(trans('moves.' . $fmV['Name'] . '.Power')))
+                                  {{ trans('moves.' . $fmV['Name'] . '.Power') }}
+                                @else
+                                  0
+                                @endif
+                              </span>
+                            </div>
+                            <span class="type {{ strtolower(trans('moves.' . $fmV['Name'] . '.Type')) }}">
+                              {{ ucfirst(strtolower(trans('moves.' . $fmV['Name'] . '.Type'))) }}
                             </span>
-                          </div>
-                          <span class="type {{ strtolower(trans('moves.' . $fmV['Name'] . '.Type')) }}">{{ ucfirst(strtolower(trans('moves.' . $fmV['Name'] . '.Type'))) }}</span>
+                          @endif
                         @endforeach
                       </div>
                     </div>
